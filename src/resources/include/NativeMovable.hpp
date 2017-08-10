@@ -49,14 +49,14 @@ public:
         }
     }
 
-    void setDirection(const float x, const float y, const float z){
+    void setDirection(const float x, const float y, const float z) {
         for (auto c : list) {
             c->setDirection(x, y, z);
         }
     }
 
-    void addComponent(const NativeMovableComponent* c) {
-        list.push_back(c);
+    void addComponent(NativeMovableComponent* c) {
+        this->list.push_back(c);
     }
 
 private:
