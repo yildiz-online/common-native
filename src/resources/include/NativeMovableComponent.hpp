@@ -43,6 +43,8 @@ public:
     virtual void setPosition(const float x, const float y, const float z) = 0;
 
     virtual void setDirection(const float x, const float y, const float z) = 0;
+
+    virtual void setOrientation(const float x, const float y, const float z, const float w) = 0;
 };
 
 }

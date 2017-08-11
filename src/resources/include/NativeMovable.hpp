@@ -55,6 +55,12 @@ public:
         }
     }
 
+    void setOrientation(const float x, const float y, const float z, const float w) {
+        for (auto c : list) {
+            c->setOrientation(x, y, z, w);
+        }
+    }
+
     void addComponent(NativeMovableComponent* c) {
         this->list.push_back(c);
     }
