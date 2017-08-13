@@ -23,6 +23,7 @@
 
 package be.yildiz.common.nativeresources;
 
+import be.yildiz.common.resource.OperatingSystem;
 import be.yildiz.common.util.Util;
 
 /**
@@ -37,7 +38,7 @@ public class SystemWin64 implements NativeOperatingSystem {
 
     @Override
     public String getName() {
-        return "win64";
+        return OperatingSystem.WIN64.getPath();
     }
 
     @Override

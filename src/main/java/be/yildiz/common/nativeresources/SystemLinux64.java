@@ -23,6 +23,7 @@
 
 package be.yildiz.common.nativeresources;
 
+import be.yildiz.common.resource.OperatingSystem;
 import be.yildiz.common.util.Util;
 
 /**
@@ -37,7 +38,7 @@ public class SystemLinux64 implements NativeOperatingSystem {
 
     @Override
     public String getName() {
-        return "linux64";
+        return OperatingSystem.LINUX64.getPath();
     }
 
     @Override
