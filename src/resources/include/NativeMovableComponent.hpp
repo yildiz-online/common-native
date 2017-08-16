@@ -45,6 +45,10 @@ public:
     virtual void setDirection(const float x, const float y, const float z) = 0;
 
     virtual void setOrientation(const float x, const float y, const float z, const float w) = 0;
+
+    virtual void addMovableComponent(NativeMovableComponent* c);
+
+    virtual void removeMovableComponent(NativeMovableComponent* c);
 };
 
 }

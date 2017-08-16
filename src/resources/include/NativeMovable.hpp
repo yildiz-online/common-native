@@ -26,6 +26,7 @@
 
 #include "NativeMovableComponent.hpp"
 #include <vector>
+#include <algorithm>
 
 namespace yz {
 
@@ -63,6 +64,10 @@ public:
 
     void addComponent(NativeMovableComponent* c) {
         this->list.push_back(c);
+    }
+
+    void removeComponent(NativeMovableComponent* c) {
+        this->list.erase(std::remove(this->list.begin(), this->list.end(), c), this->list.end());
     }
 
 private:
