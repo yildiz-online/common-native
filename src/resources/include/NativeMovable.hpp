@@ -38,6 +38,8 @@ class NativeMovable {
 
 public:
 
+    NativeMovable() {}
+
     /**
      * Change the object position.
      * @param x New X position value.

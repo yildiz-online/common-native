@@ -34,6 +34,8 @@ class NativeMovableComponent {
 
 public:
 
+    NativeMovableComponent() {}
+
     /**
      * Change the object position.
      * @param x New X position value.
