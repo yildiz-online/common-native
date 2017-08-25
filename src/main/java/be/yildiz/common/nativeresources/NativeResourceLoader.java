@@ -25,9 +25,10 @@ package be.yildiz.common.nativeresources;
 
 import be.yildiz.common.collections.Lists;
 import be.yildiz.common.collections.Maps;
-import be.yildiz.common.log.Logger;
 import be.yildiz.common.resource.ZipUtil;
 import be.yildiz.common.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -39,6 +40,8 @@ import java.util.*;
  * @author Grégory Van den Borre
  */
 public final class NativeResourceLoader {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(NativeResourceLoader.class);
 
     /**
      * Directory containing the native libraries, can be win32, win34, linux32,
@@ -195,10 +198,10 @@ public final class NativeResourceLoader {
     public void loadLibrary(final String... libs) {
         String nativePath;
         for (String lib : libs) {
-            Logger.debug("Loading native : " + lib);
+            LOGGER.debug("Loading native : " + lib);
             nativePath = getLibPath(lib);
             System.load(nativePath);
-            Logger.debug(nativePath + " loaded.");
+            LOGGER.debug(nativePath + " loaded.");
         }
     }
 

@@ -24,9 +24,7 @@
 
 package be.yildiz.common.nativeresources;
 
-import be.yildiz.common.log.Logger;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -43,11 +41,6 @@ import java.io.IOException;
 public class NativeResourceLoaderTest {
 
     public static class GetLibPath {
-
-        @Before
-        public void init() {
-            Logger.disable();
-        }
 
         private final NativeOperatingSystem[] systems = {new SystemLinux64(), new SystemWin32(), new SystemWin64()};
 
@@ -82,11 +75,6 @@ public class NativeResourceLoaderTest {
     }
     
     public static class LoadLibrary {
-
-        @Before
-        public void init() {
-                Logger.disable();
-            }
 
         private final NativeOperatingSystem[] systems = {new SystemLinux64(), new SystemWin32(), new SystemWin64()};
 
