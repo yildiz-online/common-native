@@ -76,22 +76,12 @@
             </goals>
             <configuration>
               <sources>
-                <source>src/main/c++</source>
-                <source>src/main/include</source>
+                <source>src/main/resources/main/includes</source>
               </sources>
             </configuration>
           </execution>
         </executions>
       </plugin>
     </plugins>
-
-    <resources>
-      <resource>
-        <directory>src/resources/include</directory>
-        <includes>
-          <include>*.hpp</include>
-        </includes>
-      </resource>
-    </resources>
   </build>
 </project>
