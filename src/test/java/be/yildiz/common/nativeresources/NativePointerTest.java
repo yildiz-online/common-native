@@ -23,65 +23,66 @@
 
 package be.yildiz.common.nativeresources;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test class for NativePointer.
  *
  * @author Grégory Van den Borre
  */
-public final class NativePointerTest {
+final class NativePointerTest {
 
     /***/
     @Test
-    public void testEquals() {
+    void testEquals() {
         NativePointer p1 = NativePointer.create(1);
         NativePointer p2 = NativePointer.create(1);
-        Assert.assertEquals(p1, p2);
-        Assert.assertEquals(p1, p1);
-        Assert.assertFalse(p1.equals(null));
-        Assert.assertFalse(p1.equals(1));
-        Assert.assertFalse(p1.equals(NativePointer.create(2)));
+        assertEquals(p1, p2);
+        assertEquals(p1, p1);
+        assertFalse(p1.equals(null));
+        assertFalse(p1.equals(1));
+        assertFalse(p1.equals(NativePointer.create(2)));
     }
 
     /***/
     @Test
-    public void testHashcode() {
+    void testHashcode() {
         int value = 456;
         NativePointer p1 = NativePointer.create(value);
-        Assert.assertEquals(value, p1.hashCode());
+        assertEquals(value, p1.hashCode());
     }
 
     /***/
     @Test
-    public void testNewPointer() {
+    void testNewPointer() {
         long value = 458L;
         NativePointer p = NativePointer.create(value);
-        Assert.assertEquals(value, p.getPointerAddress());
+        assertEquals(value, p.getPointerAddress());
     }
 
     /***/
     @Test
-    public void testToString() {
+    void testToString() {
         int value = 456;
         NativePointer p1 = NativePointer.create(value);
-        Assert.assertEquals(String.valueOf(value), p1.toString());
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testDelete() {
-        NativePointer p = NativePointer.create(10L);
-        p.delete();
-        p.getPointerAddress();
+        assertEquals(String.valueOf(value), p1.toString());
     }
 
     @Test
-    public void testIsDeleted() {
+    void testDelete() {
         NativePointer p = NativePointer.create(10L);
-        Assert.assertFalse(p.isDeleted());
         p.delete();
-        Assert.assertTrue(p.isDeleted());
+        assertThrows(IllegalArgumentException.class, p::getPointerAddress);
+    }
+
+    @Test
+    void testIsDeleted() {
+        NativePointer p = NativePointer.create(10L);
+        assertFalse(p.isDeleted());
+        p.delete();
+        assertTrue(p.isDeleted());
     }
 
 }

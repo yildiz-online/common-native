@@ -24,72 +24,78 @@
 
 package be.yildiz.common.nativeresources;
 
-import org.junit.Assert;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.experimental.runners.Enclosed;
-import org.junit.rules.TemporaryFolder;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Grégory Van den Borre
  */
-@RunWith(Enclosed.class)
-public class NativeResourceLoaderTest {
+class NativeResourceLoaderTest {
 
-    public static class GetLibPath {
+    @Nested
+    class GetLibPath {
 
         private final NativeOperatingSystem[] systems = {new SystemLinux64(), new SystemWin32(), new SystemWin64()};
 
-        @Rule
-        public final TemporaryFolder folder = new TemporaryFolder();
+        @Test
+        void withExistingFileWithExtension() throws IOException {
+            Path folder = Files.createTempDirectory("test");
+            NativeResourceLoader nrl = NativeResourceLoader.inPath(folder.toAbsolutePath().toFile().getAbsolutePath(), this.systems);
+            File f = getFile("lib_out" + nrl.libraryExtension);
+            assertEquals(f.getAbsolutePath(), nrl.getLibPath(f.getAbsolutePath()));
+            Files.delete(folder);
+        }
 
         @Test
-        public void withExistingFileWithExtension() throws IOException {
-            NativeResourceLoader nrl = NativeResourceLoader.inPath(this.folder.newFolder().getAbsolutePath(), this.systems);
+        void withExistingFileWithoutExtension() throws IOException {
+            Path folder = Files.createTempDirectory("test");
+            NativeResourceLoader nrl = NativeResourceLoader.inPath(folder.toAbsolutePath().toFile().getAbsolutePath(), this.systems);
             File f = getFile("lib_out" + nrl.libraryExtension);
-            Assert.assertEquals(f.getAbsolutePath(), nrl.getLibPath(f.getAbsolutePath()));
+            assertEquals(f.getAbsolutePath(), nrl.getLibPath(f.getAbsolutePath().replace(nrl.libraryExtension, "")));
+            Files.delete(folder);
         }
 
         @Test
-        public void withExistingFileWithoutExtension() throws IOException {
-            NativeResourceLoader nrl = NativeResourceLoader.inPath(this.folder.newFolder().getAbsolutePath(), this.systems);
-            File f = getFile("lib_out" + nrl.libraryExtension);
-            Assert.assertEquals(f.getAbsolutePath(), nrl.getLibPath(f.getAbsolutePath().replace(nrl.libraryExtension, "")));
+        void withNotExistingFileNotRegistered() throws IOException {
+            Path folder = Files.createTempDirectory("test");
+            NativeResourceLoader nrl = NativeResourceLoader.inPath(folder.toAbsolutePath().toFile().getAbsolutePath(), this.systems);
+            assertThrows(AssertionError.class, () -> nrl.getLibPath("lib"));
+            Files.delete(folder);
         }
 
-        @Test(expected = AssertionError.class)
-        public void withNotExistingFileNotRegistered() throws IOException {
-            NativeResourceLoader nrl = NativeResourceLoader.inPath(folder.newFolder().getAbsolutePath(), this.systems);
-            Assert.assertEquals(null, nrl.getLibPath("lib"));
-        }
-
-        @Test(expected = AssertionError.class)
-        public void withNullFilePath() throws IOException {
-            NativeResourceLoader nrl = NativeResourceLoader.inPath(folder.newFolder().getAbsolutePath(), this.systems);
-            nrl.getLibPath(null);
+        @Test
+        void withNullFilePath() throws IOException {
+            Path folder = Files.createTempDirectory("test");
+            NativeResourceLoader nrl = NativeResourceLoader.inPath(folder.toAbsolutePath().toFile().getAbsolutePath(), this.systems);
+            assertThrows(AssertionError.class, () -> nrl.getLibPath(null));
+            Files.delete(folder);
         }
     }
-    
-    public static class LoadLibrary {
+
+    @Nested
+    class LoadLibrary {
 
         private final NativeOperatingSystem[] systems = {new SystemLinux64(), new SystemWin32(), new SystemWin64()};
 
-        @Rule
-        public final TemporaryFolder folder = new TemporaryFolder();
-
-        @Test(expected = UnsatisfiedLinkError.class)
-        public void happyFlow() throws IOException {
-            NativeResourceLoader nrl = NativeResourceLoader.inPath(this.folder.newFolder().getAbsolutePath(), this.systems);
+        @Test
+        void happyFlow() throws IOException {
+            Path folder = Files.createTempDirectory("test");
+            NativeResourceLoader nrl = NativeResourceLoader.inPath(folder.toAbsolutePath().toFile().getAbsolutePath(), this.systems);
 
             String[] libs = new String[]{getFile("lib_one" + nrl.libraryExtension).getAbsolutePath(),
                 getFile("lib_two" + nrl.libraryExtension).getAbsolutePath(),
                 getFile("lib_three" + nrl.libraryExtension).getAbsolutePath()};
 
-            nrl.loadLibrary(libs);
+            assertThrows(UnsatisfiedLinkError.class, () -> nrl.loadLibrary(libs));
+            Files.delete(folder);
         }
     }
     

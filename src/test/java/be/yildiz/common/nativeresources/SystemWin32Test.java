@@ -23,21 +23,22 @@
 
 package be.yildiz.common.nativeresources;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Grégory Van den Borre
  */
-public class SystemWin32Test {
+class SystemWin32Test {
 
     @Test
-    public void getNameTest() {
-        Assert.assertEquals("win32", new SystemWin32().getName());
+    void getNameTest() {
+        assertEquals("win32", new SystemWin32().getName());
     }
 
     @Test
-    public void getExtensionTest() {
-        Assert.assertEquals(".dll", new SystemWin32().getExtension());
+    void getExtensionTest() {
+        assertEquals(".dll", new SystemWin32().getExtension());
     }
 }
