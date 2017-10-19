@@ -229,12 +229,15 @@ public final class NativeResourceLoader {
     /**
      * To load the shared libraries, only used for windows, on linux, will not
      * load anything.
-     *
-     * @param libs Libraries to be loaded only on windows.
      */
-    public void loadBaseLibrary(String... libs) {
+    public void loadBaseLibrary() {
         if (!Util.isLinux()) {
-            loadLibrary(libs);
+            if(Util.isX86()) {
+                loadLibrary("libgcc_s_sjlj-1.dll", "libstdc++-6.dll");
+            } else {
+                loadLibrary("libgcc_s_seh-1.dll", "libstdc++-6.dll");
+            }
+
         }
     }
 
