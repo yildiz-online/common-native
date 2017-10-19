@@ -239,7 +239,9 @@ public final class NativeResourceLoader {
             } else {
                 loadLibrary("libgcc_s_seh-1.dll", "libstdc++-6.dll");
             }
-            loadLibrary(libs);
+            if(libs != null && libs.length > 0) {
+                loadLibrary(libs);
+            }
         }
     }
 
