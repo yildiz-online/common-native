@@ -29,11 +29,11 @@ package be.yildiz.common.nativeresources;
  */
 public enum Systems {
 
-    linux64(new SystemLinux64()),
+    LINUX64(new SystemLinux64()),
 
-    win32(new SystemWin32()),
+    WIN32(new SystemWin32()),
 
-    win64(new SystemWin64());
+    WIN64(new SystemWin64());
 
     public final NativeOperatingSystem system;
 
