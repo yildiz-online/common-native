@@ -25,7 +25,7 @@ Wiki:
 https://yildiz.atlassian.net/wiki
 
 Quality report:
-https://sonarqube.com/overview?id=be.yildiz-games:common-native
+https://sonarcloud.io/dashboard?id=be.yildiz-games%3Acommon-native
 
 ## License
 
