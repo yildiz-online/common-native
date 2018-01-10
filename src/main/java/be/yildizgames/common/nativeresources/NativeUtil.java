@@ -22,35 +22,18 @@
  *
  */
 
-package be.yildiz.common.nativeresources;
-
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+package be.yildizgames.common.nativeresources;
 
 /**
  * @author Grégory Van den Borre
  */
-class SystemsTest {
+public class NativeUtil {
 
-    @Nested
-    class Values {
-
-        @Test
-        void win32() {
-            assertEquals("win32", Systems.WIN32.getSystem().getName());
-        }
-
-        @Test
-        void win64() {
-            assertEquals("win64", Systems.WIN64.getSystem().getName());
-        }
-
-        @Test
-        void linux64() {
-            assertEquals("linux64", Systems.LINUX64.getSystem().getName());
-        }
+    public static boolean isLinux() {
+        return System.getProperty("os.name").toLowerCase().indexOf("linux") > 0;
     }
 
+    public static boolean isWindows() {
+        return System.getProperty("os.name").toLowerCase().indexOf("win") > 0;
+    }
 }
