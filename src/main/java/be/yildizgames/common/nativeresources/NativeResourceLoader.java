@@ -32,7 +32,13 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Vector;
 
 /**
  * Utility class to load the native library from the classpath or a jar.
@@ -200,10 +206,10 @@ public final class NativeResourceLoader {
     public void loadLibrary(final String... libs) {
         String nativePath;
         for (String lib : libs) {
-            LOGGER.debug("Loading native : " + lib);
+            LOGGER.debug("Loading native : {}", lib);
             nativePath = getLibPath(lib);
             System.load(nativePath);
-            LOGGER.debug(nativePath + " loaded.");
+            LOGGER.debug("{} loaded.", nativePath);
         }
     }
 

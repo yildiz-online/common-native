@@ -25,15 +25,23 @@
 package be.yildizgames.common.nativeresources;
 
 /**
+ * This class expose functions specific for operating systems.
  * @author Grégory Van den Borre
  */
 public class NativeUtil {
 
+    /**
+     * Private constructor to prevent instantiation.
+     */
+    private NativeUtil() {
+        super();
+    }
+
     public static boolean isLinux() {
-        return System.getProperty("os.name").toLowerCase().indexOf("linux") > -1;
+        return System.getProperty("os.name").toLowerCase().contains("linux");
     }
 
     public static boolean isWindows() {
-        return System.getProperty("os.name").toLowerCase().indexOf("win") > -1;
+        return System.getProperty("os.name").toLowerCase().contains("win");
     }
 }
