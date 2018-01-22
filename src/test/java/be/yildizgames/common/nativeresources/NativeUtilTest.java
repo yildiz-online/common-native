@@ -24,16 +24,31 @@
 
 package be.yildizgames.common.nativeresources;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
 /**
  * @author Grégory Van den Borre
  */
-public class NativeUtil {
+class NativeUtilTest {
 
-    public static boolean isLinux() {
-        return System.getProperty("os.name").toLowerCase().indexOf("linux") > -1;
+    @Nested
+    class IsOS {
+
+        @Test
+        void happyFlow() {
+            if(System.getProperty("os.name").toLowerCase().contains("linux")) {
+                Assertions.assertTrue(NativeUtil.isLinux());
+                Assertions.assertFalse(NativeUtil.isWindows());
+            } else if (System.getProperty("os.name").toLowerCase().contains("win")) {
+                Assertions.assertTrue(NativeUtil.isWindows());
+                Assertions.assertFalse(NativeUtil.isLinux());
+            } else {
+                Assertions.fail("Unknown system:" + System.getProperty("os.name"));
+            }
+        }
+
     }
 
-    public static boolean isWindows() {
-        return System.getProperty("os.name").toLowerCase().indexOf("win") > -1;
-    }
 }
