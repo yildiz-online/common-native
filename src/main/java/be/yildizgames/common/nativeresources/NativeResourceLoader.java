@@ -206,8 +206,8 @@ public final class NativeResourceLoader {
     public void loadLibrary(final String... libs) {
         String nativePath;
         for (String lib : libs) {
-            LOGGER.debug("Loading native : {}", lib);
             nativePath = getLibPath(lib);
+            LOGGER.debug("Loading native : {}", nativePath);
             System.load(nativePath);
             LOGGER.debug("{} loaded.", nativePath);
         }
