@@ -39,12 +39,12 @@ class SystemsTest {
 
         @Test
         void win64() {
-            assertEquals("win64", Systems.WIN64.getSystem().getName());
+            assertEquals(new SystemWin64(), OperatingSystem.WIN64.getSystem());
         }
 
         @Test
         void linux64() {
-            assertEquals("linux64", Systems.LINUX64.getSystem().getName());
+            assertEquals(new SystemLinux64(), OperatingSystem.LINUX64.getSystem());
         }
     }
 

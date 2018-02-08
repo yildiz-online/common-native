@@ -36,11 +36,11 @@ public class SystemWin64 implements NativeOperatingSystem {
 
     @Override
     public String getName() {
-        return OperatingSystem.WIN64.getPath();
+        return "win64";
     }
 
     @Override
-    public boolean getCondition() {
+    public boolean isCurrent() {
         return !NativeUtil.isLinux();
     }
 }

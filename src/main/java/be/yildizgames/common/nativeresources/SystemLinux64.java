@@ -36,11 +36,13 @@ public class SystemLinux64 implements NativeOperatingSystem {
 
     @Override
     public String getName() {
-        return OperatingSystem.LINUX64.getPath();
+        return "linux64";
     }
 
     @Override
-    public boolean getCondition() {
+    public boolean isCurrent() {
         return NativeUtil.isLinux();
     }
+
+
 }

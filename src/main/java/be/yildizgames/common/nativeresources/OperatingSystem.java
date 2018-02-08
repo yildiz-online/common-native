@@ -24,6 +24,8 @@
 
 package be.yildizgames.common.nativeresources;
 
+import java.util.Arrays;
+
 /**
  * Possible different system with different files.
  *
@@ -34,30 +36,40 @@ public enum OperatingSystem {
     /**
      * Windows 64 bits.
      */
-    WIN64("win64"),
+    WIN64(new SystemWin64()),
 
     /**
      * Linux 64 bits.
      */
-    LINUX64("linux64");
+    LINUX64(new SystemWin64());
 
     /**
-     * Directory to hold the file for this particular system.
+     * Associated system.
      */
-    private final String path;
+    private final NativeOperatingSystem system;
 
-    OperatingSystem(final String path) {
-        this.path = path;
+
+    OperatingSystem(final NativeOperatingSystem system) {
+        this.system = system;
     }
 
-    public String getPath() {
-        return path;
+    public NativeOperatingSystem getSystem() {
+        return this.system;
     }
 
-    public static OperatingSystem getCurrent() {
-        if(NativeUtil.isLinux()) {
-            return LINUX64;
-        }
-        return WIN64;
+    public static NativeOperatingSystem getCurrent() {
+        return Arrays
+                .stream(OperatingSystem.values())
+                .map(OperatingSystem::getSystem)
+                .filter(NativeOperatingSystem::isCurrent)
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public static NativeOperatingSystem[] getAll() {
+        return Arrays
+                .stream(OperatingSystem.values())
+                .map(OperatingSystem::getSystem)
+                .toArray(NativeOperatingSystem[]::new);
     }
 }

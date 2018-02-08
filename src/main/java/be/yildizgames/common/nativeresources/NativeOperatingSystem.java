@@ -33,5 +33,5 @@ public interface NativeOperatingSystem {
 
     String getName();
 
-    boolean getCondition();
+    boolean isCurrent();
 }

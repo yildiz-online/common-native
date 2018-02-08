@@ -77,14 +77,6 @@ public final class NativeResourceLoader {
         this(System.getProperty("user.home") + File.separator + "app-root" + File.separator + "data", decompress, systemToSupport);
     }
 
-    private NativeResourceLoader(boolean decompress, Systems... systemToSupport) {
-        this(decompress, Arrays.stream(systemToSupport).map(Systems::getSystem).toArray(NativeOperatingSystem[]::new));
-    }
-
-    private NativeResourceLoader(String path, boolean decompress, Systems... systemToSupport) {
-        this(path, decompress, Arrays.stream(systemToSupport).map(Systems::getSystem).toArray(NativeOperatingSystem[]::new));
-    }
-
     private NativeResourceLoader(String path, boolean decompress, NativeOperatingSystem... systemToSupport) {
         super();
         NativeOperatingSystem nos = this.findSystem(systemToSupport);
@@ -110,12 +102,8 @@ public final class NativeResourceLoader {
         return new NativeResourceLoader(true, systemToSupport);
     }
 
-    public static NativeResourceLoader inJar(Systems... systemToSupport) {
-        return new NativeResourceLoader(true, systemToSupport);
-    }
-
     public static NativeResourceLoader inJar() {
-        return new NativeResourceLoader(true, Systems.values());
+        return new NativeResourceLoader(true, OperatingSystem.getAll());
     }
 
     /**
@@ -128,27 +116,15 @@ public final class NativeResourceLoader {
         return new NativeResourceLoader(path, true, systemToSupport);
     }
 
-    public static NativeResourceLoader inJar(String path, Systems... systemToSupport) {
-        return new NativeResourceLoader(path, true, systemToSupport);
-    }
-
     public static NativeResourceLoader inJar(String path) {
-        return new NativeResourceLoader(path, true, Systems.values());
+        return new NativeResourceLoader(path, true, OperatingSystem.getAll());
     }
 
     public static NativeResourceLoader inPath(String path, NativeOperatingSystem... systemToSupport) {
         return new NativeResourceLoader(path,false, systemToSupport);
     }
 
-    public static NativeResourceLoader inPath(String path, Systems... systemToSupport) {
-        return new NativeResourceLoader(path,false, systemToSupport);
-    }
-
     public static NativeResourceLoader inTestPath(NativeOperatingSystem... systemToSupport) {
-        return new NativeResourceLoader(new File("").getAbsolutePath() + "/target/classes",false, systemToSupport);
-    }
-
-    public static NativeResourceLoader inTestPath(Systems... systemToSupport) {
         return new NativeResourceLoader(new File("").getAbsolutePath() + "/target/classes",false, systemToSupport);
     }
 
@@ -165,7 +141,7 @@ public final class NativeResourceLoader {
     private NativeOperatingSystem findSystem(NativeOperatingSystem[] systemToSupport) {
         return Arrays
                 .stream(systemToSupport)
-                .filter(NativeOperatingSystem::getCondition)
+                .filter(NativeOperatingSystem::isCurrent)
                 .findFirst()
                 .orElseThrow(AssertionError::new);
     }
