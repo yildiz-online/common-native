@@ -41,7 +41,7 @@ public enum OperatingSystem {
     /**
      * Linux 64 bits.
      */
-    LINUX64(new SystemWin64());
+    LINUX64(new SystemLinux64());
 
     /**
      * Associated system.

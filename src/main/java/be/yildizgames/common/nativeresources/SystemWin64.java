@@ -43,4 +43,5 @@ public class SystemWin64 implements NativeOperatingSystem {
     public boolean isCurrent() {
         return !NativeUtil.isLinux();
     }
+
 }
