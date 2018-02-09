@@ -50,7 +50,7 @@ public final class NativeResourceLoader {
     private static final Logger LOGGER = LoggerFactory.getLogger(NativeResourceLoader.class);
 
     /**
-     * Directory containing the native libraries, can be win32, win34, linux32,
+     * Directory containing the native libraries, win34,
      * linux64 depending on the operating system and the underlying
      * architecture.
      */
@@ -160,15 +160,9 @@ public final class NativeResourceLoader {
         if (f.exists()) {
             return f.getAbsolutePath();
         }
-        String nativePath = this.availableLib.get(lib);
+        String nativePath = this.availableLib.get(f.getName());
         if (nativePath == null) {
-            nativePath = "/usr/lib/x86_64-linux-gnu/" + lib + ".so";
-            if(!new File(nativePath).exists()) {
-                if(!lib.startsWith("lib")) {
-                    return getLibPath("lib" + lib);
-                }
-                throw new AssertionError(lib + " has not been found in path.");
-            }
+            throw new AssertionError(lib + " has not been found in path.");
         }
         return nativePath;
     }
@@ -200,8 +194,7 @@ public final class NativeResourceLoader {
                     .ofNullable(dir.listFiles(p -> p.isFile() && p.getName().endsWith(this.libraryExtension)))
                     .ifPresent(files -> Arrays
                             .stream(files)
-                            .forEach(f -> this.availableLib
-                                    .put(f.getName().replace(this.libraryExtension, ""), f.getAbsolutePath())
+                            .forEach(f -> this.availableLib.put(f.getName(), f.getAbsolutePath())
                     ));
         }
     }
