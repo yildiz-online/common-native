@@ -24,9 +24,12 @@
 
 package be.yildizgames.common.nativeresources;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Grégory Van den Borre
@@ -42,4 +45,15 @@ class SystemLinux64Test {
     void getExtensionTest() {
         assertEquals(".so", new SystemLinux64().getExtension());
     }
+
+    @Test
+    void isCurrentTest() {
+        if(NativeUtil.isLinux()) {
+            assertTrue(new SystemLinux64().isCurrent());
+        } else {
+            assertFalse(new SystemLinux64().isCurrent());
+        }
+    }
+
+
 }

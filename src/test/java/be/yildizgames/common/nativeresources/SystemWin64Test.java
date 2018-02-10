@@ -24,9 +24,12 @@
 
 package be.yildizgames.common.nativeresources;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Grégory Van den Borre
@@ -41,5 +44,14 @@ class SystemWin64Test {
     @Test
     void getExtensionTest() {
         assertEquals(".dll", new SystemWin64().getExtension());
+    }
+
+    @Test
+    void isCurrentTest() {
+        if(NativeUtil.isWindows()) {
+            assertTrue(new SystemWin64().isCurrent());
+        } else {
+            assertFalse(new SystemWin64().isCurrent());
+        }
     }
 }

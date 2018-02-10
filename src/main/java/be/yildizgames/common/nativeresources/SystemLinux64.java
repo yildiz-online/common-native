@@ -44,5 +44,15 @@ public class SystemLinux64 implements NativeOperatingSystem {
         return NativeUtil.isLinux();
     }
 
+    @Override
+    public int hashCode() {
+        return getName().hashCode() + getExtension().hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof SystemLinux64;
+    }
+
 
 }
