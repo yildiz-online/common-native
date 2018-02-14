@@ -22,26 +22,29 @@
  *
  */
 
-package be.yildizgames.common.nativeresources;
+package be.yildizgames.common.nativeresources.systems;
+
+import be.yildizgames.common.nativeresources.NativeOperatingSystem;
+import be.yildizgames.common.nativeresources.NativeUtil;
 
 /**
  * @author Grégory Van den Borre
  */
-public class SystemWin64 implements NativeOperatingSystem {
+public class SystemLinux64 implements NativeOperatingSystem {
 
     @Override
     public String getExtension() {
-        return ".dll";
+        return ".so";
     }
 
     @Override
     public String getName() {
-        return "win64";
+        return "linux64";
     }
 
     @Override
     public boolean isCurrent() {
-        return !NativeUtil.isLinux();
+        return NativeUtil.isLinux();
     }
 
     @Override
@@ -51,7 +54,8 @@ public class SystemWin64 implements NativeOperatingSystem {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof SystemWin64;
+        return o instanceof SystemLinux64;
     }
+
 
 }

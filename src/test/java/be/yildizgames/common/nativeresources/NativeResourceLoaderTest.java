@@ -24,6 +24,8 @@
 
 package be.yildizgames.common.nativeresources;
 
+import be.yildizgames.common.nativeresources.systems.SystemLinux64;
+import be.yildizgames.common.nativeresources.systems.SystemWin64;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 

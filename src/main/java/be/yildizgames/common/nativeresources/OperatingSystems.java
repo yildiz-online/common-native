@@ -24,6 +24,9 @@
 
 package be.yildizgames.common.nativeresources;
 
+import be.yildizgames.common.nativeresources.systems.SystemLinux64;
+import be.yildizgames.common.nativeresources.systems.SystemWin64;
+
 import java.util.Arrays;
 
 /**
@@ -31,7 +34,7 @@ import java.util.Arrays;
  *
  * @author Grégory Van den Borre
  */
-public enum OperatingSystem {
+public enum OperatingSystems {
 
     /**
      * Windows 64 bits.
@@ -49,7 +52,7 @@ public enum OperatingSystem {
     private final NativeOperatingSystem system;
 
 
-    OperatingSystem(final NativeOperatingSystem system) {
+    OperatingSystems(final NativeOperatingSystem system) {
         this.system = system;
     }
 
@@ -59,8 +62,8 @@ public enum OperatingSystem {
 
     public static NativeOperatingSystem getCurrent() {
         return Arrays
-                .stream(OperatingSystem.values())
-                .map(OperatingSystem::getSystem)
+                .stream(OperatingSystems.values())
+                .map(OperatingSystems::getSystem)
                 .filter(NativeOperatingSystem::isCurrent)
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
@@ -68,8 +71,8 @@ public enum OperatingSystem {
 
     public static NativeOperatingSystem[] getAll() {
         return Arrays
-                .stream(OperatingSystem.values())
-                .map(OperatingSystem::getSystem)
+                .stream(OperatingSystems.values())
+                .map(OperatingSystems::getSystem)
                 .toArray(NativeOperatingSystem[]::new);
     }
 }

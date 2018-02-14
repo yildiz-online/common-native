@@ -24,7 +24,7 @@
 
 package be.yildizgames.common.nativeresources;
 
-import org.junit.jupiter.api.Assertions;
+import be.yildizgames.common.nativeresources.systems.SystemLinux64;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

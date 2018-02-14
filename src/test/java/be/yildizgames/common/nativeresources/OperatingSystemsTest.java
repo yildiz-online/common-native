@@ -25,6 +25,8 @@
 
 package be.yildizgames.common.nativeresources;
 
+import be.yildizgames.common.nativeresources.systems.SystemLinux64;
+import be.yildizgames.common.nativeresources.systems.SystemWin64;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -33,17 +35,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * @author Grégory Van den Borre
  */
-class OperatingSystemTest {
+class OperatingSystemsTest {
 
     @Nested
     class GetCurrent {
 
         @Test
         void happyFlow() {
-            if(OperatingSystem.LINUX64.getSystem().isCurrent()) {
-                assertEquals(OperatingSystem.LINUX64.getSystem(), OperatingSystem.getCurrent());
-            } else if (OperatingSystem.WIN64.getSystem().isCurrent()) {
-                assertEquals(OperatingSystem.WIN64.getSystem(), OperatingSystem.getCurrent());
+            if(OperatingSystems.LINUX64.getSystem().isCurrent()) {
+                assertEquals(OperatingSystems.LINUX64.getSystem(), OperatingSystems.getCurrent());
+            } else if (OperatingSystems.WIN64.getSystem().isCurrent()) {
+                assertEquals(OperatingSystems.WIN64.getSystem(), OperatingSystems.getCurrent());
             } else {
                 throw new IllegalArgumentException("No linux or windows system.");
             }
@@ -55,9 +57,9 @@ class OperatingSystemTest {
 
         @Test
         void happyFlow() {
-            assertEquals(2, OperatingSystem.getAll().length);
-            assertEquals(OperatingSystem.WIN64.getSystem(), OperatingSystem.getAll()[0]);
-            assertEquals(OperatingSystem.LINUX64.getSystem(), OperatingSystem.getAll()[1]);
+            assertEquals(2, OperatingSystems.getAll().length);
+            assertEquals(OperatingSystems.WIN64.getSystem(), OperatingSystems.getAll()[0]);
+            assertEquals(OperatingSystems.LINUX64.getSystem(), OperatingSystems.getAll()[1]);
         }
     }
 
@@ -66,7 +68,7 @@ class OperatingSystemTest {
 
         @Test
         void happyFlow() {
-            assertEquals(new SystemWin64(), OperatingSystem.WIN64.getSystem());
+            assertEquals(new SystemWin64(), OperatingSystems.WIN64.getSystem());
         }
 
     }
@@ -76,7 +78,7 @@ class OperatingSystemTest {
 
         @Test
         void happyFlow() {
-            assertEquals(new SystemLinux64(), OperatingSystem.LINUX64.getSystem());
+            assertEquals(new SystemLinux64(), OperatingSystems.LINUX64.getSystem());
         }
 
     }

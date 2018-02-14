@@ -26,7 +26,7 @@ package be.yildizgames.common.nativeresources;
 
 
 import be.yildizgames.common.compression.Unpacker;
-import be.yildizgames.common.compression.ZipUnpacker;
+import be.yildizgames.common.compression.zip.ZipUnpacker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -103,7 +103,7 @@ public final class NativeResourceLoader {
     }
 
     public static NativeResourceLoader inJar() {
-        return new NativeResourceLoader(true, OperatingSystem.getAll());
+        return new NativeResourceLoader(true, OperatingSystems.getAll());
     }
 
     /**
@@ -117,7 +117,7 @@ public final class NativeResourceLoader {
     }
 
     public static NativeResourceLoader inJar(String path) {
-        return new NativeResourceLoader(path, true, OperatingSystem.getAll());
+        return new NativeResourceLoader(path, true, OperatingSystems.getAll());
     }
 
     public static NativeResourceLoader inPath(String path, NativeOperatingSystem... systemToSupport) {
