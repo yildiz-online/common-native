@@ -22,40 +22,10 @@
  *
  */
 
-package be.yildizgames.common.nativeresources.systems;
-
-import be.yildizgames.common.nativeresources.NativeOperatingSystem;
-import be.yildizgames.common.nativeresources.NativeUtil;
+package be.yildizgames.common.nativeresources;
 
 /**
  * @author Grégory Van den Borre
  */
-public class SystemLinux64 implements NativeOperatingSystem {
-
-    @Override
-    public String getExtension() {
-        return ".so";
-    }
-
-    @Override
-    public String getName() {
-        return "linux64";
-    }
-
-    @Override
-    public boolean isCurrent() {
-        return NativeUtil.isLinux();
-    }
-
-    @Override
-    public int hashCode() {
-        return getName().hashCode() + getExtension().hashCode();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return o instanceof SystemLinux64;
-    }
-
-
+public class Artifact {
 }

@@ -10,7 +10,7 @@ jdk:
 addons:
   coverity_scan:
     project:
-      name: "yildiz-online/common-client"
+      name: "yildiz-online/common-native"
       description: "Build submitted via Travis CI"
     notification_email: vandenborre.gregory@hotmail.fr
     build_command_prepend: "mvn clean"
