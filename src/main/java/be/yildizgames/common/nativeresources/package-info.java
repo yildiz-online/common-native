@@ -22,26 +22,8 @@
  *
  */
 
-package be.yildizgames.common.nativeresources;
-
 /**
- * This class expose functions specific for operating systems.
+ * Empty just contains the necessary to have the jar compile.
  * @author Grégory Van den Borre
  */
-public class NativeUtil {
-
-    /**
-     * Private constructor to prevent instantiation.
-     */
-    private NativeUtil() {
-        super();
-    }
-
-    public static boolean isLinux() {
-        return System.getProperty("os.name").toLowerCase().contains("linux");
-    }
-
-    public static boolean isWindows() {
-        return System.getProperty("os.name").toLowerCase().contains("win");
-    }
-}
+package be.yildizgames.common.nativeresources;
