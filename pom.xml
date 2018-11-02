@@ -1,7 +1,7 @@
 <!--
   ~ This file is part of the Yildiz-Engine project, licenced under the MIT License  (MIT)
   ~
-  ~  Copyright (c) 2018 Grégory Van den Borre
+  ~  Copyright (c) 2018 Grï¿½gory Van den Borre
   ~
   ~  More infos available: https://www.yildiz-games.be
   ~
@@ -30,7 +30,7 @@
   <url>https://bitbucket.org/yildiz-engine-team/common-native</url>
 
   <artifactId>common-native</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4-SNAPSHOT</version>
 
   <packaging>jar</packaging>
   <inceptionYear>2017</inceptionYear>
