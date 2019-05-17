@@ -28,4 +28,5 @@ package be.yildizgames.common.nativeresources;
  * @author Grégory Van den Borre
  */
 public class Artifact {
+
 }
