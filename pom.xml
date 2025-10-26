@@ -31,14 +31,11 @@
     <developerConnection>scm:git:https://github.com/yildiz-online/common-native</developerConnection>
     <url>https://github.com/yildiz-online/common-native</url>
   </scm>
+
   <parent>
     <groupId>be.yildiz-games</groupId>
     <artifactId>parent</artifactId>
     <version>7.0.1</version>
   </parent>
-
-  <properties>
-    <maven.javadoc.skip>true</maven.javadoc.skip>
-  </properties>
 
 </project>
